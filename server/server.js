@@ -13,9 +13,9 @@ app.use(bodyParser.json());
 
 app.post('/todos', (req, res) => {
     var todo = new Todo({
-        text: req.body.text,
-        completed: req.body.completed,
-        completedAt: req.body.completedAt
+        text: req.body.text
+        //completed: req.body.completed,
+        //completedAt: req.body.completedAt
     });
 
     todo.save().then(
@@ -25,16 +25,13 @@ app.post('/todos', (req, res) => {
         },
         (err) =>
         {
-            res.status(400);
-            res.send(err);
+            res.status(400).send(err);
         }
     );
 });
 
-
-//end points:
-//
-
 app.listen(3000, () =>{
     console.log('Started in port 3000');
 });
+
+module.exports = {app};
